@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      REGION: MY_REGION                     # edit here
-      PROJECT_ID: MY_PROJECT_ID             # edit here
-      REPOSITORY: MY_ARTIFACT_REPOSITORY    # edit here
-      SERVICE_ACCOUNT: MY_SERVICE_ACCOUNT   # edit here
-      SERVICE_NAME: MY_SERVICE_NAME         # edit here
+      REGION: europe-southwest1                     # edit here
+      PROJECT_ID: belen-onboarding             # edit here
+      REPOSITORY: onboarding-repo    # edit here
+      SERVICE_ACCOUNT: mlflow-sa@belen-onboarding.iam.gserviceaccount.com   # edit here
+      SERVICE_NAME: onboarding-service         # edit here
 
     steps:
     - name: Checkout
