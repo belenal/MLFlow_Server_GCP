@@ -12,7 +12,7 @@ RUN poetry install --without dev --no-root
 
 COPY onboarding ./onboarding
 
-COPY onboarding/challenge/README.md ./README.md
+COPY README.md ./README.md
 
 RUN poetry install --only-root
 
