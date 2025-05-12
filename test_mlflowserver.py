@@ -12,7 +12,7 @@ from model import DelayModel
 
 TRACKING_URI = "https://onboarding-service-592642508401.europe-southwest1.run.app"
 
-data = pd.read_csv("/Users/belenaguirre/MLFlow_Server_GCP/data.csv", low_memory=False)
+data = pd.read_csv("data.csv", low_memory=False)
 data = shuffle(data, random_state=111)
 
 # Preprocess
