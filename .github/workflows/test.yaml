@@ -1,0 +1,45 @@
+# Train model and push model to MLFlow
+
+name: Train model and push model to MLFlow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  train:
+    name: Train model
+    runs-on: ubuntu-latest
+
+    env:
+      REGION: europe-southwest1 # edit here
+      PROJECT_ID: belen-onboarding # edit here
+      REPOSITORY: onboarding-repo # edit here
+      SERVICE_ACCOUNT: mlflow-sa@belen-onboarding.iam.gserviceaccount.com # edit here
+      SERVICE_NAME: onboarding-service # edit here
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: "auth"
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          project_id: "${{ env.PROJECT_ID }}"
+          credentials_json: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}"
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11 # Use Python 3.11 as in your environment
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Train and register model
+        run: |
+          python test_mlflowserver.py
