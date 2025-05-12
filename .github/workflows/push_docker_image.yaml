@@ -1,17 +1,15 @@
-# Docker build and push container to Artifact Registry, deploy on Cloud Run
+# Push Docker image to Artifact Registry
 
-name: Deploy MLFlow Server
+name: Push Docker image API
 
 on:
   push:
     branches: [main]
-    paths:
-      - Dockerfile
-      - .github/workflows/deploy_cloud_run.yml
+  workflow_dispatch:
 
 jobs:
-  login-build-push:
-    name: Build, Push and Run
+  train:
+    name: Push Docker image
     runs-on: ubuntu-latest
 
     env:
@@ -38,7 +36,7 @@ jobs:
 
       - name: "Build container"
         run: |-
-          docker build -t "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/mlflow:${{ github.sha }}" .
+          docker buildx build --platform linux/amd64 -f image/Dockerfile -t "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/mlflow:${{ github.sha }}" .
 
       - name: "Push container"
         run: |-
