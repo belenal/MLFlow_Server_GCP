@@ -5,9 +5,9 @@ name: Deploy MLFlow Server
 on:
   push:
     branches: [main]
-    paths:
-      - Dockerfile
-      - .github/workflows/deploy_cloud_run.yml
+    #paths:
+    #  - Dockerfile
+    #  - .github/workflows/deploy_cloud_run.yml
 
 jobs:
   login-build-push:

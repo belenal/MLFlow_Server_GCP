@@ -9,7 +9,6 @@ on:
       - test_mlflowserver.py
       - .github/workflows/train_and_push_model.yaml
       - requirements.txt
-
   workflow_dispatch:
 
 jobs:
