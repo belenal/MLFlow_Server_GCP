@@ -20,9 +20,7 @@ model = DelayModel(settings["categorical_features"], settings["top_10_features"]
 y = model.add_delay(data, threshold=15)
 y = pd.DataFrame(y, columns=[settings["target_column"]])
 
-x_train, x_test, y_train, y_test = train_test_split(
-    data, y, test_size=0.33, random_state=42
-)
+x_train, x_test, y_train, y_test = train_test_split(data, y, test_size=0.33, random_state=42)
 
 # Train
 model.fit(x_train, y_train)
@@ -48,16 +46,14 @@ experiment = mlflow.get_experiment_by_name(experiment_name)
 run_name = datetime.now().strftime("%Y-%m-%d_%H:%M")
 tags = {
     "env": "test",
-    "data_date": "2025-05-12",
+    "data_date": "2025-05-13",
     "model_type": "XGBoost",
     "experiment_description": "Tutorial MLFlow experiment",
     # ... other tags ...
 }
 
 # Start the MLflow run
-with mlflow.start_run(
-    experiment_id=experiment.experiment_id, run_name=run_name, tags=tags
-):
+with mlflow.start_run(experiment_id=experiment.experiment_id, run_name=run_name, tags=tags):
     # Log the hyperparameters used in the model
     mlflow.log_param("categorical_features", settings["categorical_features"])
     mlflow.log_param("top_10_features", settings["top_10_features"])

@@ -21,7 +21,7 @@ jobs:
       PROJECT_ID: belen-onboarding # edit here
       REPOSITORY: onboarding-repo # edit here
       SERVICE_ACCOUNT: mlflow-sa@belen-onboarding.iam.gserviceaccount.com # edit here
-      SERVICE_NAME: onboarding-service # edit here
+      SERVICE_NAME: onboarding-service # edit here # relaunch
 
     steps:
       - name: Checkout
